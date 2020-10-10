@@ -4,8 +4,15 @@
   <meta charset="UTF-8">
   <title>TKB自己紹介</title>
   <link rel="stylesheet" href="./style.css" type="text/css">
+  <script src="https://unpkg.com/vue@2.5.17"></script>
+  <script src="https://unpkg.com/vue-router@3.0.1"></script>
 </head>
 <body>
+    <div id="app">
+        <router-link to="/top"> TOP PAGE</router-link>
+        <router-link to="/products"> MY PRODUCT PAGE</router-link>
+        <router-view></router-view>
+    </div>
   <div class="background_cover">
     <p><a href="https://qiita.com/MokeeeMokeee/items/4b33691b829aaf119bbf">モケさんのサイト</a>を参考にgithub.ioでウェブページ作成してみました。</p>
     <h1>Who am I ???</h1>
@@ -23,7 +30,10 @@
     <p>
         IoTプログラミング / Deep learning実装
     </p>
-
+    <h2> 勉強したい事</h2>
+        <p>
+            GO言語：https://go-tour-jp.appspot.com/welcome/1
+        </p>
     <h2>link</h2>
     <p>
       <a href="https://twitter.com/j_takurou">twitter</a>
@@ -36,5 +46,29 @@
     </p>
  
   </div>
+
+  <!-- Vue tutorial -->
+  <script>
+      var router = new VueRouter({
+          routes: [
+              {
+                  path: '/top',
+                  component: {
+                      template: '<div>This is top page.</div>'
+                  }
+              },
+              {
+                  path: '/products',
+                  component: {
+                      template: '<div>This is a page about my product.</div>'
+                  }
+              }
+
+          ]
+      })
+      var app = new Vue({
+          router: router
+      }).$mount('#app')
+  </script>
 </body>
 </html>
