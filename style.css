@@ -1,0 +1,23 @@
+body {
+    background: url("./background.jpg");
+    background-size: cover;
+    text-align: center;
+}
+
+div.background_cover{
+    background-color: floralwhite;
+    margin: 3%;
+    padding: 2%;
+    padding-left: 5%;
+    padding-right: 5%;
+    border: dashed 3px #5b8bd0;
+}
+
+h2{
+    padding: 8px 19px;
+    margin: 2em 0;
+    color: #2c2c2f;
+    background: #cde4ff;
+    border-top: solid 5px #cde4ff;
+    border-bottom: solid 5px #5989cf;
+}
