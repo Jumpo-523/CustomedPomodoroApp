@@ -11,6 +11,7 @@
     <div id="app">
         <router-link to="/top"> TOP PAGE</router-link>
         <router-link to="/products"> MY PRODUCT PAGE</router-link>
+        <router-link :to="{name: 'user', params: {userId:123}}"> USER SPECIFIC PAGE</router-link>
         <router-view></router-view>
     </div>
   <div class="background_cover">
@@ -62,10 +63,20 @@
                   component: {
                       template: '<div>This is a page about my product.</div>'
                   }
+              },
+// latest_products
+              {
+                  path: '/user/:userId',
+                  name: 'user',
+                  component: {
+                      template: '<div>ユーザIDは {{ $route.params.userId }} です。 </div>'
+                  }
               }
 
           ]
       })
+    // Instead of :to="{name: 'user', params: {userId:123}}"
+    //   router.push({name:"user", params:{nameId:1}})
       var app = new Vue({
           router: router
       }).$mount('#app')
