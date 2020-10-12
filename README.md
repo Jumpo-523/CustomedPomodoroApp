@@ -23,3 +23,7 @@
         - this.$routeとthis.$routerを混同しているためにおきたミス？
         - どこで宣言されたプロパティ？
         - そもそも'$'に何の意味があるのか？
+
+-  関係ないメモ
+    - 草生えない理由
+        - https://qiita.com/endo_hizumi/items/49edf021b8b9189b4f88
