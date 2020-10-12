@@ -9,12 +9,15 @@
 </head>
 <body>
     <div id="app">
-        <router-link to="/top"> TOP PAGE</router-link>
+        <router-link to="/"> TOP PAGE</router-link>
         <router-link to="/users"> MY PRODUCT PAGE</router-link>
-        <router-link :to="{name: 'user', params: {userId:123}}"> USER SPECIFIC PAGE</router-link>
+        <router-link :to="{name: 'user', params: {userId:1}}"> USER SPECIFIC PAGE</router-link>
         <router-view></router-view>
     </div>
 
+
+  <!-- Vue tutorial -->
+  <script type="text/x-template" id="home">
   <div class="background_cover">
     <p><a href="https://qiita.com/MokeeeMokeee/items/4b33691b829aaf119bbf">モケさんのサイト</a>を参考にgithub.ioでウェブページ作成してみました。</p>
     <h1>Who am I ???</h1>
@@ -48,32 +51,93 @@
     </p>
  
   </div>
-
-  <!-- Vue tutorial -->
-    <script type="text/x-template" id="user-list">
-        <div>ユーザー一覧ページです。
-            <div class="loading" v-if="loading">Loading...</div>
-            <div class="error" v-if="error">{{ error }} </div>
-            <div v-for="user in users" :key="user.id">
-                <h2>{{ user.name }}</h2>
-            </div>
+</script>
+<script type="text/x-template" id="user-list">
+    <div class="background_cover">ユーザー一覧ページです。
+        <div class="loading" v-if="loading">Loading...</div>
+        <div class="error" v-if="error">{{ error }} </div>
+        <div v-for="user in users" :key="user.id">
+            <h2>{{ user.name }}</h2>
         </div>
+    </div>
 
-    </script>
-  <script>
-      var getUsers = function (callback){
-          setTimeout(function(){
-              callback(null, [
+</script>
+
+<script type="text/x-template" id="user-detail">
+    <div class="background_cover">
+        <div class="loading" v-if="loading">Loading...</div>
+        <div class="error" v-if="error">{{ error }} </div>
+        <div v-if="user">
+            <h2>{{ user.name }}</h2>
+            <p>{{ user.description }}</p>
+            <a v-bind:href="user.url"> Link</a>
+        </div>
+    </div>
+</script>
+
+<script>
+      var userData = [
                   {
                       id: 1,
-                      name: 'person 1'
+                      name: 'DSB competition.',
+                      description: "kaggle 2019 DSB コンペで59位だったコード群です。",
+                    //   linkをどう貼り付けるか
+                      url: 'https://github.com/Jumpo-523/DSB2019_kaggle'
                   },
                   {
                       id: 2,
-                      name: 'person 2'
+                      name: 'IoT　product',
+                      description: "raspberry piと通信して収集したデータを元に可視化するweb applicationです。（TBD）",
+                      url: 'https://github.com/Jumpo-523/rasPi_products'
+
                   },
-              ])
+              ]
+    var getUsers = function (callback){
+          setTimeout(function(){
+              callback(null, userData)
           }, 1000)
+      }
+    
+    var getUser = function (userId, callback){
+          setTimeout(function(){
+              var filteredUsers = userData.filter(function (user){
+                  return user.id === parseInt(userId, 10)
+              })
+              callback(null, filteredUsers && filteredUsers[0])
+          }, 1000)
+      }
+    var home = {
+        template:'#home'
+    }
+      var userDetail = {
+          template: '#user-detail',
+          data: function (){
+              return {
+                  loading: false,
+                  user: null,
+                  error: null
+              }
+          },
+          created: function () {
+            this.fetchData()
+        },
+        watch: {
+            '$route': 'fetchData'
+        },
+        methods: {
+            fetchData: function(){
+                this.loading = true
+                getUser(this.$route.params.userId, (function (err, user) {
+                    this.loading = false
+                    if (err) {
+                        this.error = err.toString()
+                    }else{
+                        this.user = user
+                    }
+                    // console.log(this)
+                }).bind(this))
+            }
+        }
       }
       var UserList = {
         //   HTML上のscriptタグのidを指定する。
@@ -108,10 +172,8 @@
       var router = new VueRouter({
           routes: [
               {
-                  path: '/top',
-                  component: {
-                      template: '<div>This is top page.</div>'
-                  }
+                  path: '/',
+                  component: home
               },
               {
                   path: '/users',
@@ -129,9 +191,7 @@
               {
                   path: '/user/:userId',
                   name: 'user',
-                  component: {
-                      template: '<div>ユーザIDは {{ $route.params.userId }} です。 </div>'
-                  }
+                  component: userDetail
               }
 
           ]
