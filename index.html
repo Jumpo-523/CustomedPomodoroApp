@@ -146,36 +146,77 @@
     var home = {
         template:'#home'
     }
-      var userDetail = {
-          template: '#user-detail',
-          data: function (){
-              return {
-                  loading: false,
-                  user: null,
-                  error: null
-              }
-          },
-          created: function () {
-            this.fetchData()
+    var UserCreate = {
+        template: '#user-create',
+        data: function(){
+            return {
+                sending:false,
+                user: this.defaultUser(),
+                error:null
+            }
         },
-        watch: {
-            '$route': 'fetchData'
+        created: function(){
         },
-        methods: {
-            fetchData: function(){
-                this.loading = true
-                getUser(this.$route.params.userId, (function (err, user) {
-                    this.loading = false
-                    if (err) {
+        methods:{
+            defaultUser: function(){
+                return {
+                    name: '',
+                    description: ''
+                }
+            },
+            createUser:function(){
+                if (this.user.name.trim() === ''){
+                    this.error = 'Name is necessary'
+                    return
+                }
+                if (this.user.description.trim() === ''){
+                    this.error = 'Description is necessary'
+                    return
+                }
+                postUser(this.user, (function (err, user){
+                    this.sending = false
+                    if (err){
                         this.error = err.toString()
                     }else{
-                        this.user = user
+                        this.error = null
+                        this.user = this.defaultUser()
+                        alert('new user was added.')
+                        this.$router.push("/users")
                     }
-                    // console.log(this)
                 }).bind(this))
             }
         }
-      }
+    }
+    var userDetail = {
+        template: '#user-detail',
+        data: function (){
+            return {
+                loading: false,
+                user: null,
+                error: null
+            }
+        },
+        created: function () {
+        this.fetchData()
+    },
+    watch: {
+        '$route': 'fetchData'
+    },
+    methods: {
+        fetchData: function(){
+            this.loading = true
+            getUser(this.$route.params.userId, (function (err, user) {
+                this.loading = false
+                if (err) {
+                    this.error = err.toString()
+                }else{
+                    this.user = user
+                }
+                // console.log(this)
+            }).bind(this))
+        }
+    }
+    }
       var UserList = {
         //   HTML上のscriptタグのidを指定する。
         template: "#user-list",
