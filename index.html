@@ -16,7 +16,7 @@
     </div>
 
 
-  <!-- Vue tutorial -->
+  <!-- ###########TEMPLATES########### -->
   <script type="text/x-template" id="home">
   <div class="background_cover">
     <p><a href="https://qiita.com/MokeeeMokeee/items/4b33691b829aaf119bbf">モケさんのサイト</a>を参考にgithub.ioでウェブページ作成してみました。</p>
@@ -75,7 +75,35 @@
     </div>
 </script>
 
+<script type="text/x-template" id="user-create">
+    <div class="background_cover">
+        <div class="sending" v-if="sending">Sending...</div>
+        <div>
+            <h2>新規ユーザ作成</h2>
+            <div>
+                <label>Name: </label>
+                <input type="text" v-model="user.name">
+            </div>
+            <div>
+                <label>説明文: </label>
+                <textarea v-model="user.description"></textarea>
+            </div>
+
+            <div class="error" v-if="error">
+                {{ error }} 
+            </div>
+            <div>
+                <input type="button" @click="createUser" value="送信">
+            </div>
+        </div>
+    </div>
+</script>
+
+<!-- ###########TEMPLATES########### -->
+
+
 <script>
+// DATA
       var userData = [
                   {
                       id: 1,
@@ -92,6 +120,7 @@
 
                   },
               ]
+// FUNCTIONS
     var getUsers = function (callback){
           setTimeout(function(){
               callback(null, userData)
@@ -106,6 +135,14 @@
               callback(null, filteredUsers && filteredUsers[0])
           }, 1000)
       }
+    var postUser = function (params, callback){
+        setTimeout(function(){
+            params.id = userData.length + 1
+            userData.push(params)
+            callback(null, params)
+        }, 1000)
+    }
+// COMPONENTS
     var home = {
         template:'#home'
     }
@@ -187,6 +224,12 @@
                     }
                   }
               },
+              {
+                //   add route definitions
+                path: '/users/new',
+                component: UserCreate
+              }
+              ,
 // latest_products
               {
                   path: '/user/:userId',
