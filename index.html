@@ -59,6 +59,11 @@
         <div v-for="user in users" :key="user.id">
             <h2>{{ user.name }}</h2>
         </div>
+        <ul>
+            <li><a href="contents.html" target="fruits">いちご</a></li>
+        </ul>
+        <iframe src="contents.html" name="fruits" width="400" height="200">
+        </iframe>
     </div>
 
 </script>
@@ -95,6 +100,32 @@
             <div>
                 <input type="button" @click="createUser" value="送信">
             </div>
+        </div>
+    </div>
+</script>
+
+
+<script type="text/x-template" id="login">
+    <div class="background_cover">
+        
+        <div>
+            <h2>LOGIN for create new item</h2>
+            <p v-if="$route.query.redirect">
+                You must log in.
+            </p>
+            <form @submit.prevent="login">
+                <label><input v-model="email" placeholder="email"></label>
+                <label><input v-model="pass" placeholder="password" type="password"></label><br>
+
+                <button type="submit">LOGIN</button>
+            <div class="error" v-if="error">
+                ログイン失敗！
+            </div>
+        </form>
+            <!-- <div>
+                <input type="button" @click="createUser" value="送信">
+            </div> -->
+        
         </div>
     </div>
 </script>
@@ -143,6 +174,31 @@
         }, 1000)
     }
 // COMPONENTS
+
+    var Login = {
+        template: '#login',
+        data: function (){
+            return {
+                email: 'test',
+                pass: '',
+                error:false
+                }
+        },
+        methods:{
+            login:function(){
+                Auth.login(this.email, this.pass, (function (loggedIn){
+                    if (!loggedIn){
+                        this.error = true
+                    }else {
+                        // redirect parameterがついている場合はそのパスに遷移
+                        // ここのjs挙動わからない。
+                        this.$router.replace(this.$route.query.redirect || '/')
+                    }
+                }).bind(this))
+            }
+        }
+    }
+
     var home = {
         template:'#home'
     }
@@ -157,7 +213,8 @@
         },
         created: function(){
         },
-        methods:{
+
+        methods: {
             defaultUser: function(){
                 return {
                     name: '',
@@ -247,6 +304,25 @@
             }
         }
       }
+
+      var Auth = {
+          login: function (email, pass, cb) {
+              setTimeout(function () {
+                  if (email == 'vue@example.com' && pass === 'vue') {
+                      localStorage.token = Math.random().toString(36).substring(7)
+                      if (cb) {cb(true)}
+                  }else{
+                      if (cb) {cb(false)}
+                  }
+              }, 0)
+          },
+          logout: function () {
+              delete localStorage.token
+          },
+          loggedIn: function (){
+              return !localStorage.token
+          }
+      }
       var router = new VueRouter({
           routes: [
               {
@@ -268,14 +344,37 @@
               {
                 //   add route definitions
                 path: '/users/new',
-                component: UserCreate
-              }
-              ,
+                component: UserCreate,
+                beforeEnter: function(to, from, next) {
+                    if (!Auth.loggedIn()){
+                        next({
+                            path:"/login",
+                            query: {redirect: to.fullPath}
+                        })
+                    }else{
+                        // そのままcreateページに進む
+                        next()
+                    }
+                }
+              },
 // latest_products
               {
                   path: '/user/:userId',
                   name: 'user',
                   component: userDetail
+              },
+              // login
+              {
+                  path:'/users/login',
+                  component: Login
+              },
+              // logout
+              {
+                  path:'/users/logout',
+                  beforeEnter: function (to, from, next){
+                      Auth.logout()
+                      next('/')
+                  }
               }
 
           ]

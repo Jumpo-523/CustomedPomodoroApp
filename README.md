@@ -11,8 +11,17 @@
         https://qiita.com/htanjo/items/360144cab96943050ab2
     - componentごとにmethod, data, el, template,...etcを持たせて個別に開発できる。
 
-
-
+    - VueRouterの各key
+        - path 
+        - component
+        - beforeEnter
+            - `query: {redirect: to.fullPath}`の解釈
+    - そう言えばRouter-linkつけてなくても遷移したのは何で何だろう。
+    - Vue component
+        ```HTML tag```
+            - v-model: HTMl上で変更があった場合即時Vue.componentと同期？
+            - v-if
+            - v-for
 - 遭遇したエラー
 
     - ```javascript
