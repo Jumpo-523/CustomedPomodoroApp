@@ -53,7 +53,7 @@
   </div>
 </script>
 <script type="text/x-template" id="user-list">
-    <div class="background_cover">ユーザー一覧ページです。
+    <div class="background_cover">活動報告ページです。
         <div class="loading" v-if="loading">Loading...</div>
         <div class="error" v-if="error">{{ error }} </div>
         <div v-for="user in users" :key="user.id">
@@ -75,7 +75,12 @@
         <div v-if="user">
             <h2>{{ user.name }}</h2>
             <p>{{ user.description }}</p>
-            <a v-bind:href="user.url"> Link</a>
+            <a v-bind:href="user.url"> 資料Link</a>
+
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" v-bind:src="user.url" allowfullscreen></iframe>
+              </div>
+
         </div>
     </div>
 </script>
@@ -141,14 +146,22 @@
                       name: 'DSB competition.',
                       description: "kaggle 2019 DSB コンペで59位だったコード群です。",
                     //   linkをどう貼り付けるか
-                      url: 'https://github.com/Jumpo-523/DSB2019_kaggle'
+                      url: 'https://github.com/Jumpo-523/DSB2019_kaggle',
+                      with_movie:false
                   },
                   {
-                      id: 2,
+                      id:2,
+                      name: '操作変数法に関する発表',
+                      description: "操作変数を用いた因果推論に関して、Hernan and Robins, 'What If'の16章に沿って内容をまとめた資料です。",
+                      url: "https://www.youtube.com/watch?v=1CHO3ahoYl4",
+                      with_movie:true
+                  },
+                  {
+                      id: 3,
                       name: 'IoT　product',
                       description: "raspberry piと通信して収集したデータを元に可視化するweb applicationです。（TBD）",
-                      url: 'https://github.com/Jumpo-523/rasPi_products'
-
+                      url: 'https://github.com/Jumpo-523/rasPi_products',
+                      with_movie:false
                   },
               ]
 // FUNCTIONS
