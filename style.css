@@ -21,3 +21,60 @@ h2{
     border-top: solid 5px #cde4ff;
     border-bottom: solid 5px #5989cf;
 }
+
+
+/* // COLORS
+$white: #fff;
+$main-color: #29C7D2;
+$sub-color: #253FE1;
+
+$color__bg: $sub-color;
+$color__sidebar: $white;
+$color__toggle: $sub-color;
+
+// SIZES
+$width__sidebar: 15em;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $color__bg;
+}
+
+.sidebar-toggle {
+  position: fixed;
+  z-index: 1;
+  border: 4px solid $white;
+  outline: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-left: $width__sidebar + 3.8em;
+  margin-top: 1em;
+  background-color: $color__toggle;
+  transform: rotate(45deg);
+  cursor: pointer;
+  transition: .5s;
+  
+  &.is-closed {
+    transform: translateX(.3em) rotate(0deg);  
+  }
+  
+  .icon {
+    font-size: 1.5rem;
+    color: $white;
+  }
+}
+
+.sidebar {
+  width: $width__sidebar;
+  height: 100vh;
+  background-color: $color__sidebar;
+  transition: .7s;
+  
+  &.is-closed {
+    transform: translateX(-16em);
+  }
+} */

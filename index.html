@@ -14,9 +14,12 @@
 </head>
 <body>
     <div id="app">
-        <router-link to="/"> TOP PAGE</router-link>
-        <router-link to="/users"> MY PRODUCT PAGE</router-link>
-        <router-link :to="{name: 'user', params: {userId:1}}"> USER SPECIFIC PAGE</router-link>
+        <div class="sidebar">
+            <button class="sidebar-toggle"><i class="fa fa-plus icon"></i></button>
+            <router-link to="/"> TOP PAGE</router-link>
+            <router-link to="/users"> MY PRODUCT PAGE</router-link>
+            <router-link :to="{name: 'user', params: {userId:1}}"> USER SPECIFIC PAGE</router-link>
+        </div>
         <router-view></router-view>
     </div>
 
