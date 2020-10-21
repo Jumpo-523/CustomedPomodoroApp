@@ -6,6 +6,11 @@
   <link rel="stylesheet" href="./style.css" type="text/css">
   <script src="https://unpkg.com/vue@2.5.17"></script>
   <script src="https://unpkg.com/vue-router@3.0.1"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+   integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 </head>
 <body>
     <div id="app">
@@ -59,11 +64,6 @@
         <div v-for="user in users" :key="user.id">
             <h2>{{ user.name }}</h2>
         </div>
-        <ul>
-            <li><a href="contents.html" target="fruits">いちご</a></li>
-        </ul>
-        <iframe src="contents.html" name="fruits" width="400" height="200">
-        </iframe>
     </div>
 
 </script>
