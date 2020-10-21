@@ -63,6 +63,8 @@
         <div class="error" v-if="error">{{ error }} </div>
         <div v-for="user in users" :key="user.id">
             <h2>{{ user.name }}</h2>
+            <router-link :to="{ path: 'user/' + user.id}">{{ user.name }}の詳細を確認する。</router-link>
+            <!-- <router-link :to="/user/{{user.id}}"></router-link> -->
         </div>
     </div>
 
