@@ -82,8 +82,10 @@
             <p>{{ user.description }}</p>
             <a v-bind:href="user.url"> 資料Link</a>
 
-            <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" v-bind:src="user.url" allowfullscreen></iframe>
+            <div v-if="user.with_movie">
+                <iframe width="560" height="315" v-bind:src="user.url" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                <!-- <iframe class="embed-responsive-item" v-bind:src="user.url" ></iframe> -->
               </div>
 
         </div>
@@ -158,7 +160,7 @@
                       id:2,
                       name: '操作変数法に関する発表',
                       description: "操作変数を用いた因果推論に関して、Hernan and Robins, 'What If'の16章に沿って内容をまとめた資料です。",
-                      url: "https://www.youtube.com/watch?v=1CHO3ahoYl4",
+                      url: "https://www.youtube.com/embed/1CHO3ahoYl4",
                       with_movie:true
                   },
                   {
