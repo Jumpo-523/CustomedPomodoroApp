@@ -10,6 +10,9 @@
 ここで、ECMASCRIPTの変遷と、どう言う開発の歴史があるのか、モダンな書き方を知るのがまず最初
 
 - varはもう古いよ。
+- dictにおける{nameの省力}
+- optional chaining
+- falsy と undefinedな者の分類分離
 
 
 ## それが終わったら、以下の教材でわからないところを虱潰し。
