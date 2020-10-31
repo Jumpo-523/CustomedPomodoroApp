@@ -10,6 +10,26 @@
 ここで、ECMASCRIPTの変遷と、どう言う開発の歴史があるのか、モダンな書き方を知るのがまず最初
 
 - varはもう古いよ。
+  - `const` `let`はonly block scopeだけど、varはfunction scope.
+  ```js
+    function foo(){
+      if(true){
+          var fruit1 = 'apple';        //exist in function scope
+          const fruit2 = 'banana';     //exist in block scope
+          let fruit3 = 'strawberry';   //exist in block scope
+
+      }
+      console.log(fruit1);
+      console.log(fruit2);
+      console.log(fruit3);
+  }
+
+  foo();
+  //result:
+  //apple
+  //error: fruit2 is not defined
+  //error: fruit3 is not defined
+  ```
 - dictにおける{nameの省力}
 - optional chaining
 - falsy と undefinedな者の分類分離
