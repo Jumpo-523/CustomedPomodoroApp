@@ -43,7 +43,7 @@
 
 https://ja.javascript.info/js
 
-【初めて知ったこと。】
+## 【初めて知ったこと。】
 
 - NULL合体演算子(Nullish coalescing operator)
 - 二重構文コンストラクタ: new.target : 関数の中では、new.target プロパティを使うことで、それが new で呼ばれたかそうでないかを確認することができます。
@@ -92,6 +92,17 @@ You could also iterate over an array using a for...in loop, however this does no
   })(document.body);
   ```
   
+### `this` キーワードに関して
+- オブジェクト内部のメソッド内でthisを使えば、メソッドが呼び出された時にthisはそのオブジェクト自身となる。
+
+```
+Note on the this keyword. Used inside a function, this refers to the current object. What that actually means is specified by the way in which you called that function. If you called it using dot notation or bracket notation on an object, that object becomes this. If dot notation wasn't used for the call, this refers to the global object.
+```
+- `new`は`this`　キーワードと密接に関係している！
+  - よくわからん
+  
+- closureも実はよくわからない。
+  - https://stackoverflow.com/questions/111102/how-do-javascript-closures-work
 
 - いろんな言語のdict形式
 ```
