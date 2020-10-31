@@ -15,7 +15,7 @@
 <body>
     <div id="app">
         <div class="sidebar">
-            <button class="sidebar-toggle"><i class="fa fa-plus icon"></i></button>
+            <button class="sidebar-toggle" onclick="alert();"><i class="fa fa-plus icon"></i></button>
             <router-link to="/"> TOP PAGE</router-link>
             <router-link to="/users"> MY PRODUCT PAGE</router-link>
             <router-link :to="{name: 'user', params: {userId:1}}"> USER SPECIFIC PAGE</router-link>
@@ -175,7 +175,7 @@
     var getUsers = function (callback){
           setTimeout(function(){
               callback(null, userData)
-          }, 1000)
+          }, 300)
       }
     
     var getUser = function (userId, callback){
@@ -184,14 +184,14 @@
                   return user.id === parseInt(userId, 10)
               })
               callback(null, filteredUsers && filteredUsers[0])
-          }, 1000)
+          }, 300)
       }
     var postUser = function (params, callback){
         setTimeout(function(){
             params.id = userData.length + 1
             userData.push(params)
             callback(null, params)
-        }, 1000)
+        }, 300)
     }
 // COMPONENTS
 
