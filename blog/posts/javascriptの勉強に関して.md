@@ -31,6 +31,10 @@
   //error: fruit3 is not defined
   ```
 - dictにおける{nameの省力}
+  ```js
+  >> test = {hoge}
+    {hoge: 1}
+  ```
 - optional chaining
 - falsy と undefinedな者の分類分離
 
