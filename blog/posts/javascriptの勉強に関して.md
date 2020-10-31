@@ -44,7 +44,24 @@ https://ja.javascript.info/js
 - NULL合体演算子(Nullish coalescing operator)
 - 二重構文コンストラクタ: new.target : 関数の中では、new.target プロパティを使うことで、それが new で呼ばれたかそうでないかを確認することができます。
 
+- リストは可変長。3つ要素を入れて、101番目に要素を追加することもできる。その場合、４-99のindexには`undefined`が入る。
+```js
+>>> var a = ['dog', 'cat', 'hen'];
+>>> a[100] = 'fox';
+>>> a.length; // 101
+>>> a
+(101) ['dog', 'cat', 'hen', empty × 97, 'fox']
+>>> a[11]
+undefined
+```
 
-
+- いろんな言語のdict形式
+```
+Dictionaries in Python.
+Hashes in Perl and Ruby.
+Hash tables in C and C++.
+HashMaps in Java.
+Associative arrays in PHP.
+```
 あと、DOMAPIを体系的に知らなかった。これもちゃんと勉強できる教材を日本語で用意してくれているのは本当にありがたい。
 
