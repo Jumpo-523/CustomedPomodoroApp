@@ -78,6 +78,20 @@ You could also iterate over an array using a for...in loop, however this does no
   });
   ```
   
+-  IIFEs (Immediately Invoked Function Expressions)がちょっとまだよくわからない。
+  ```js 
+  var charsInBody = (function counter(elm) {
+  if (elm.nodeType == 3) { // TEXT_NODE
+    return elm.nodeValue.length;
+  }
+  var count = 0;
+  for (var i = 0, child; child = elm.childNodes[i]; i++) {
+    count += counter(child);
+  }
+  return count;
+  })(document.body);
+  ```
+  
 
 - いろんな言語のdict形式
 ```
