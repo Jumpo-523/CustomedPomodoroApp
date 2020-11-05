@@ -3,6 +3,7 @@ import senko from './senko.svg';
 import './App.css';
 import { Link, BrowserRouter as Router, Route } from 'react-router-dom'
 import { Home, Addbutton} from './components/Home.js';
+import { Timer } from './components/Pomodoro.js';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ class Navbar extends React.Component {
         <Route exact path='/' component={App}/>
         <Route exact path='/home' render={ () => <Home/> }/>
         <Route exact path='/Addbutton' render={ () => <Addbutton/> }/>
+        <Route exact path='/timer' render={ () => <Timer/> }/>
       </div>
       </Router>
     )

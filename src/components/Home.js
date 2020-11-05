@@ -82,6 +82,7 @@ export class Home extends React.Component {
         <div class="sidenav">
             <Link to="/">Login Page</Link>
             <Link to="/Addbutton">Addbutton</Link>
+            <Link to="/timer">Timer</Link>
         </div>
         </div>
       )
