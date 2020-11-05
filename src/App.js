@@ -1,5 +1,8 @@
+import React from 'react'
 import senko from './senko.svg';
 import './App.css';
+import { Link, BrowserRouter as Router, Route } from 'react-router-dom'
+import { Home } from './components/Home.js';
 
 function App() {
   return (
@@ -11,15 +14,32 @@ function App() {
         </p>
         <a
           className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/home"
+          // target="_blank"
+          // rel="noopener noreferrer"
         >
-          Learn React
+          Go to my profile
         </a>
       </header>
     </div>
   );
 }
+{/* <Link to="/About">About</Link> */}
 
-export default App;
+
+// Home
+class Navbar extends React.Component {
+  render(){
+    return(
+      <Router>
+      <div>
+        <Route exact path='/' component={App}/>
+        <Route exact path='/home' render={ () => <Home/> }/>
+      </div>
+      </Router>
+    )
+  }
+}
+
+export default Navbar;
+
