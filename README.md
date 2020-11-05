@@ -38,3 +38,6 @@ web engineering
 データサイエンス寄りで今後必要になってくる。
 データとしてbotで保存してる。
 自然言語処理エンジニアが欲しい。自然言語処理だけジャなく、どちらかというとHRテック
+
+
+<!-- 参考にした記事https://bagelee.com/programming/react/react-smart-speaker-8/ -->
