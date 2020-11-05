@@ -2,7 +2,7 @@ import React from 'react'
 import senko from './senko.svg';
 import './App.css';
 import { Link, BrowserRouter as Router, Route } from 'react-router-dom'
-import { Home } from './components/Home.js';
+import { Home, Addbutton} from './components/Home.js';
 
 function App() {
   return (
@@ -35,6 +35,7 @@ class Navbar extends React.Component {
       <div>
         <Route exact path='/' component={App}/>
         <Route exact path='/home' render={ () => <Home/> }/>
+        <Route exact path='/Addbutton' render={ () => <Addbutton/> }/>
       </div>
       </Router>
     )
