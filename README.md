@@ -7,6 +7,7 @@
 ## 利用技術
 
 ```json
+  {
   "dependencies": {
   "@reduxjs/toolkit": "^1.4.0",
   "@testing-library/jest-dom": "^5.11.5",
