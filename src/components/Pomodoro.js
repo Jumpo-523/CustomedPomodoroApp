@@ -15,19 +15,28 @@ class StartTaskButton extends React.Component  {
     constructor(props) {
         super(...arguments);
         this.state = {
-            tasks: []
+            tasks: [],
+            new_task:""
         }
       }
+    handleChange(event){
+        let new_task = event.target.new_task
+        this.setState({new_task: new_task});
+    }
     onClick(e) {
         // console.log(productId + 'を買うよ！')
-        alert('event:', e)
+        alert('event:', this.state.new_task)
       }
-    
 
     render() {
         return (
-            <div>
-
+            <div class="task">
+                <input type="text" class="task_input" 
+                    value={this.state.new_task}
+                    onChange={(e) => this.setState({new_task: e})}
+                    >
+                </input>
+                <br></br>
                 <button class="btn-liquid button" onClick={this.onClick}>
                     <span class="inner">Liquid button ?</span> 
                 </button>
@@ -37,7 +46,7 @@ class StartTaskButton extends React.Component  {
 }
 
 
-export class Timer extends React.Component{
+export class Pomodoro extends React.Component{
     constructor(props){
         super(props);
         this.state = { time: Date };
@@ -66,15 +75,6 @@ export class Timer extends React.Component{
 
                 <StartTaskButton />
 
-                {/* <!-- Draggable DIV --> */}
-                <div class="task" draggable >
-                {/* <!-- Include a header DIV with the same name 
-                as the draggable DIV, followed by "header" --> */}
-                <div class="taskheader">Click here to move</div>
-                <p>Move</p>
-                <p>this</p>
-                <p>DIV</p>
-                </div>
             </body>
             );
       };
