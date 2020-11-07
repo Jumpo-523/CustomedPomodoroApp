@@ -87,7 +87,7 @@ class TaskDetails extends React.Component{
         super(props);
         this.state = { 
             start_time: Date(),
-            end_time: null,
+            end_time: false,
          };
         this.handleClick = this.handleClick.bind(this);
       }
@@ -108,12 +108,11 @@ class TaskDetails extends React.Component{
         }
     }
     render (){
-
+        // const EndedTask = <div>Ended at {this.state.end_time}</div>
         return (
         <li>
             {this.props.children}:<button onClick={this.handleClick}>End</button>
-
-            <div disabled={this.is_ended()}>Ended at {this.state.end_time}</div>
+            { this.is_ended() ? <div>Ended at {this.state.end_time}</div> : null }
         </li>
         )
     }
