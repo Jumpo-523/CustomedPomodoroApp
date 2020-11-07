@@ -9,23 +9,48 @@ import {
     useLocation,
     useParams
   } from "react-router-dom";
-
+class OnOffButton extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {isToggleOn: true};
+        // This binding is necessary to make `this` work in the callback
+        this.handleClick = this.handleClick.bind(this);
+      }
+    
+      handleClick() {
+        this.setState(state => ({
+          isToggleOn: !state.isToggleOn
+        }));
+      }
+    
+      render() {
+        return (
+          <button onClick={this.handleClick}>
+            {this.state.isToggleOn ? 'ON' : 'OFF'}
+          </button>
+        );
+      }
+    }
 
 class StartTaskButton extends React.Component  {
     constructor(props) {
-        super(...arguments);
+        super(props);
         this.state = {
-            tasks: [],
-            new_task:""
+            tasks: [],　
+            new_task:"", 
+            history: []
         }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
       }
-    handleChange(event){
-        let new_task = event.target.new_task
-        this.setState({new_task: new_task});
-    }
-    onClick(e) {
+    handleChange(event) {
+        this.setState({new_task: event.target.value});
+      }
+    
+    handleClick(event) {
         // console.log(productId + 'を買うよ！')
-        alert('event:', this.state.new_task)
+        const new_task = this.state.new_task
+        console.log('event:', new_task)
       }
 
     render() {
@@ -33,11 +58,11 @@ class StartTaskButton extends React.Component  {
             <div class="task">
                 <input type="text" class="task_input" 
                     value={this.state.new_task}
-                    onChange={(e) => this.setState({new_task: e})}
+                    onChange={this.handleChange}
                     >
                 </input>
                 <br></br>
-                <button class="btn-liquid button" onClick={this.onClick}>
+                <button class="btn-liquid button" value="ge" onClick={this.handleClick}>
                     <span class="inner">Liquid button ?</span> 
                 </button>
 
@@ -45,6 +70,9 @@ class StartTaskButton extends React.Component  {
     );}
 }
 
+// 時間を止めて、テーブルにコメントと一緒に吐き出したい。
+// コメント入力したのちbutton押下してテキスト出力、が出来ない
+// 
 
 export class Pomodoro extends React.Component{
     constructor(props){
@@ -74,7 +102,8 @@ export class Pomodoro extends React.Component{
                 </div>
 
                 <StartTaskButton />
-
+                <br></br>
+                <OnOffButton className="footer"></OnOffButton>
             </body>
             );
       };
